@@ -149,10 +149,11 @@ public class ProcessDaoImpl implements ProcessDao {
 			throws Exception {
 		try {
 			String sqlQuery = this.buildAuditSqlQuery(ProcessName, fieldNames, Datatypes, length);
+			System.out.println("Audit SQL query ------> " + sqlQuery);
 			this.jdbcTemplateObject.execute(sqlQuery);
 
 			String triggerScript = this.createSqlTrigger(ProcessName, fieldNames, Datatypes, length);
-
+			System.out.println("Trigger sql query ------> "+ triggerScript);
 			this.jdbcTemplateObject.execute(triggerScript);
 
 		} catch (Exception e) {
@@ -435,7 +436,7 @@ public class ProcessDaoImpl implements ProcessDao {
 			str = str.replaceAll("\\[", "'").replaceAll("\\]", "'");
 			str1 = sql.replaceAll("\\[", "").replaceAll("\\]", "");
 			str1 = str1.concat(str);
-			// System.out.println("string sql = "+str1);
+			System.out.println("string final update sql-----------> = "+str1);
 		} catch (Exception e) {
 			// e.printStackTrace();
 			throw e;
@@ -484,7 +485,7 @@ public class ProcessDaoImpl implements ProcessDao {
 		sb.append("Audit_").append(pType);
 		String auditTableName = sb.toString();
 		if (checkIfTableExists(auditTableName)) {
-			System.out.println("Table found.........");
+			//System.out.println("Table found.........");
 			String sql = "Select * from " + auditTableName + ";";
 			// String existsSql = "";
 			//System.out.println(jdbcTemplate.toString());
@@ -497,12 +498,12 @@ public class ProcessDaoImpl implements ProcessDao {
 			}
 			else {
 				List<String>columnsList = new ArrayList<String>(rows.get(0).keySet());
-				columnsList.remove("ID");
-				for (Map<String, Object> row : rows) {
-					if (row.containsKey("ID")) {
-						row.remove("ID");
-					}
-				}
+				//columnsList.remove("ID");
+//				for (Map<String, Object> row : rows) {
+//					if (row.containsKey("ID")) {
+//						row.remove("ID");
+//					}
+//				}
 				mv.addObject("auditTableRows", rows);
 				mv.addObject("columnsList", columnsList);
 				mv.addObject("pType", pType);				
@@ -520,7 +521,7 @@ public class ProcessDaoImpl implements ProcessDao {
 		String sql = "SELECT count(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = ?;";
 		int count = jdbcTemplate.queryForObject(sql, new Object[] { auditTableName }, Integer.class);
 		//count 0
-		System.out.println("Count is : "+count);
+		//System.out.println("Count is : "+count);
 		return count > 0;
 	}
 
