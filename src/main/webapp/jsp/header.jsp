@@ -273,7 +273,15 @@ response.setHeader("Refresh", timeout + "; URL = session.do?");
 	         		<li><a href="dashboard.do?pType=new&nsec=<%=nsec%>"><span><img src="images/pie.png"></span> Dashboard</a></li>
 	         <%} %>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right">	       
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li>
+	      		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    About
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Version 1</a>
+			  </div>
+	      	</li>	       
 	         <li><a href="#"><span><img src="images/user1.png"></span><span><%=userDto.getFirstName()%></span></a></li>
 	        <li><a href="logout.do?nsec=<%=nsec%>"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
 	      </ul>

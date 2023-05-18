@@ -49,6 +49,21 @@
 			}
 		});
 	});
+	function myFunction() {
+	      document.getElementById("myDropdown").classList.toggle("show"); //adding a class show
+	   }
+	window.onclick = function(event) {
+	      if (!event.target.matches('.dropbtn')) {
+	         var dropdowns = document.getElementsByClassName("dropdown-content");
+	         var i;
+	         for (i = 0; i < dropdowns.length; i++) {
+	            var openDropdown = dropdowns[i];
+	            if (openDropdown.classList.contains('show')) {
+	               openDropdown.classList.remove('show');
+	            }
+	         }
+	      }
+	   }
 </script>
 <script type="text/JavaScript" src="js/ajax.js"></script>
 <script type="text/JavaScript" src="js/jquery-1.11.1.min.js"></script>
@@ -222,7 +237,10 @@ li a:hover, .dropdown:hover .dropbtn {
 		font-size: 50px;
 		line-height: 125px;
 	}
+	
+	
 } /* END Media Query */
+
 </style>
 <style>
 ul {
@@ -252,6 +270,31 @@ li a {
 li.logo img {
 	height: 45px !important;
 	padding: 0px !important;
+}
+.menu-content {
+   display: none;
+   position: absolute;
+   background-color: #017575;
+   min-width: 160px;
+   z-index: 1;
+}
+ .links {
+   color: rgb(255, 255, 255);
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+   font-size: 18px;
+   font-weight: bold;
+   border-bottom: 1px solid black;
+}
+ .menu-btn {
+   background-color: #7e32d4;
+   color: white;
+   padding: 16px;
+   font-size: 20px;
+   font-weight: bolder;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   border: none;
 }
 </style>
 
@@ -324,6 +367,29 @@ li.logo img {
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+<!-- 					<li> -->
+<!-- 						<a href="#" onclick="myFunction()" class="dropbtn"><span><img src="images/icons8-about-50.png"  -->
+<!--  									style="height: 20px;"></span><span> About</span></a> -->
+<!--       						<div id="myDropdown" class="dropdown-content"> -->
+<!-- 						         <a href="#home">Version 1</a> -->
+<!-- 						    </div> -->
+						
+<!-- <!-- 						<a onclick="showVersion()" class = "dropbtn"><span><img src="images/icons8-about-50.png" --> 
+<!-- <!-- 									style="height: 20px;"></span><span> About</span> --> 
+<!-- <!-- 							<div id="myDropdown" class="dropdown-content"> --> 
+<!-- <!--          						<a href="#home">Home</a> --> 
+<!-- <!--          						<a href="#about">About</a> --> 
+<!-- <!--          						<a href="#contact">Contact</a> --> 
+<!-- <!--       						</div> --> 
+									
+<!-- <!-- 						</a> --> 
+<!-- 					</li> -->
+					<li class="dropdown"><a href="javascript:void(0)"
+						class="dropbtn"><span><img src="images/icons8-about-50.png" style="height: 20px;"></span> About</a>
+						<div class="dropdown-content">
+							<button onclick="javascript:void(0)"><span><img src="images/icons8-version-64.png" style="height: 20px;"></span> Version 1</button>
+						</div>
+					</li>
 					<li><a href="#"><span><img src="images/4.png"
 								style="height: 20px;"></span><span><%=userDto.getFirstName()%></span></a></li>
 					<li><a href="logout.do?nsec=<%=nsec%>"><span><img
