@@ -89,12 +89,14 @@
 	<form name="displayAudit" id="displayAudit" method="post">	
 		<div style="width: 90%; float: left; margin-left: 5px">
 			<div style="width: 35%; float: left;">
-					<label style="color: #1a237e;font-size: 18px;font-weight: bold;">Process Name &nbsp;:&nbsp;&nbsp;</label>
-					<label style="color: #e65100;font-size: 15px;font-weight: bold;">${pType}</label>
+<!-- 			Process Name &nbsp;:&nbsp;&nbsp; -->
+<%-- 			${pType} --%>
+					<label style="color: #1a237e;font-size: 18px;font-weight: bold;"></label>
+					<label style="color: #e65100;font-size: 15px;font-weight: bold;"></label>
 			</div>
 			<div style="width: 50%; float: left;">
-				<label style="color: #0099CC;font-size: 18px;font-weight: bold;">Status <span class="mandetoryField" >:</span></label>
-					<div style="width: 80%; float: right;">
+				<label style="color: #0099CC;font-size: 18px;font-weight: bold;">Process Name : </label>
+					<div style="width: 70%; float: right;">
 						<select class="form-control3" style="color: #e65100;font-size: 15px;font-weight: bold;" 
 						id="list" name="list" onChange="f_Process()">
 							<option disabled selected value> -- select -- </option>
@@ -121,26 +123,28 @@
 					<table  cellpadding="0" cellspacing="0" border="1" class="display" id="example">
 						<thead>
 							<tr>								
-<%-- 								<c:set var="startLoop" scope="page" value="0"/>  --%>
+ 								<c:set var="startLoop" scope="page" value="1"/>  
 								<c:forEach items="${columnsList}" var="maps" >
 						 	      	<th style="align:center;"> ${maps}</th>  		
-<%-- 						      		<c:set var="startLoop" scope="page" value="1"/>							      		 --%>
+ 						      		<c:set var="startLoop" scope="page" value="0"/>
 								</c:forEach>							   		
 							</tr>
 						</thead>
 						<tbody>													
 							<c:forEach items="${auditTableRows}" var="maps" >
-<%-- 									<c:set var="startLoop" scope="page" value="0"/>	 --%>
-<%-- 									<c:set var="loop" scope="page" value="0"/>							 --%>
+ 									<c:set var="startLoop" scope="page" value="1"/>
+ 									<c:set var="loop" scope="page" value="1"/>
 									<tr>								
 										<c:forEach items="${maps}" var="mapItem" varStatus="mapsIndex">
-											<c:set var="index" scope="page" value="0"/>								
-											<c:if test="${startLoop==0}">										
-<%-- 												<c:set var="startLoop" scope="page" value="1"/> --%>
+											<c:set var="index" scope="page" value="1"/>								
+											<c:if test="${startLoop==1}">										
+ 												<c:set var="startLoop" scope="page" value="0"/> 
 											</c:if>	
-											<td><span style="align:center; color:black;">${mapItem.value}</span></td>
-<!-- 											<span style="align:center; color:black;"></span> -->
-<%-- 								      		<c:set var="startLoop" scope="page" value="1"/>							      		 --%>
+											<td style="align:center; color:black;">
+												<!-- <span style="align:center; color:black;"></span> -->${mapItem.value}
+											</td>
+											<!-- <span style="align:center; color:black;"></span> -->
+ 								      		<c:set var="startLoop" scope="page" value="1"/>							      		 
 								    	</c:forEach>
 							    	</tr>
 					   		</c:forEach>				   		
